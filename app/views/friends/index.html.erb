@@ -1,26 +1,28 @@
 
+<%if user_signed_in?%>
 
+    <table class="table table-striped table-bordered table-hover" id="friends">
+      <thead>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Twitter</th>
+        <th colspan="1"></th>
+      </thead>
+      <tbody>
+        <% @friends.each do |friend| %>
+          <% if friend.user == current_user%>
+          <%= render friend %>
+          <%end%>
+        <% end %>
+      </tbody>
+    </table>
+    <%= link_to "New friend", new_friend_path, class: "btn btn-secondary" %>
 
-<table class="table table-striped table-bordered table-hover" id="friends">
+<%else%>
 
+    <h1>Home World</h1>
+    <p>This is my first Rails Webpage...</p>
 
-  <thead>
-    <th>First name</th>
-    <th>Last name</th>
-    <th>Email</th>
-    <th>Phone</th>
-    <th>Twitter</th>
-    <th colspan="3"></th>
-  </thead>
-
-
-  <tbody>
-    <% @friends.each do |friend| %>
-      <%= render friend %>
-    <% end %>
-  </tbody>
-
-</table>
-
-<%= link_to "New friend", new_friend_path, class: "btn btn-secondary" %>
+<%end%>
 
